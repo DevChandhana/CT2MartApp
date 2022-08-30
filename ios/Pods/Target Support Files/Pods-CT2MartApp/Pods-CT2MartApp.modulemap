@@ -1,0 +1,6 @@
+module Pods_CT2MartApp {
+  umbrella header "Pods-CT2MartApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
