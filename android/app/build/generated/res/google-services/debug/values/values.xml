@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">326702474316-q1p4d2tftb96t3hbvhqm0h2p9cf0gr0s.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">326702474316</string>
+    <string name="google_api_key" translatable="false">AIzaSyCFM71iybv22A6S9jhPLDTqakg88UcgRe8</string>
+    <string name="google_app_id" translatable="false">1:326702474316:android:bf098aab5bc16afdb8c0e9</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCFM71iybv22A6S9jhPLDTqakg88UcgRe8</string>
+    <string name="google_storage_bucket" translatable="false">ct2mart.appspot.com</string>
+    <string name="project_id" translatable="false">ct2mart</string>
+</resources>

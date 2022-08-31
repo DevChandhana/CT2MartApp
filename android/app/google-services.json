@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "326702474316",
+    "project_id": "ct2mart",
+    "storage_bucket": "ct2mart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326702474316:android:7c975365b1ee55efb8c0e9",
+        "android_client_info": {
+          "package_name": "com.ct2mart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326702474316-q1p4d2tftb96t3hbvhqm0h2p9cf0gr0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFM71iybv22A6S9jhPLDTqakg88UcgRe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326702474316-q1p4d2tftb96t3hbvhqm0h2p9cf0gr0s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326702474316-t9l49uud18grifbfa8hfh0c5hkqtdkkl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ct2martapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326702474316:android:bf098aab5bc16afdb8c0e9",
+        "android_client_info": {
+          "package_name": "com.ct2martapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326702474316-q1p4d2tftb96t3hbvhqm0h2p9cf0gr0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFM71iybv22A6S9jhPLDTqakg88UcgRe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326702474316-q1p4d2tftb96t3hbvhqm0h2p9cf0gr0s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326702474316-t9l49uud18grifbfa8hfh0c5hkqtdkkl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ct2martapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
