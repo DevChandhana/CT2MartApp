@@ -2,6 +2,7 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image, TextInput, Text, View, Pressable} from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import {useNavigation} from '@react-navigation/native';
 // images
 import {images} from 'root/constants';
 // styles
@@ -9,6 +10,7 @@ import {styles} from './styles/index';
 // helpers
 import SocialBtns from './helpers/socialbtns';
 const Login = () => {
+  const navigator = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <Animatable.Image
@@ -52,7 +54,9 @@ const Login = () => {
         </Pressable>
       </View>
       <SocialBtns />
-      <Pressable style={{marginTop: 15}}>
+      <Pressable
+        style={{marginTop: 15}}
+        onPress={() => navigator.navigate('SignUp')}>
         <Text style={{fontWeight: 'bold', fontSize: 14}}>
           Don't have an account? <Text style={{color: '#FF4A4A'}}>SignUp</Text>
         </Text>
