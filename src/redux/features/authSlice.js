@@ -11,8 +11,9 @@ export const authSlice = createSlice({
     register: () => {
       //
     },
-    login: () => {
-      //
+    login: (state, action) => {
+      state.user = action.payload;
+      console.log(state.user);
     },
     logout: state => {
       state.user = null;
