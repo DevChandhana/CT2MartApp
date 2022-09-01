@@ -4,6 +4,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // navigation
 import Navigation from './navigations';
+import AppStack from './navigations/appstack';
 
 const App = () => {
   useEffect(() => {
@@ -15,7 +16,8 @@ const App = () => {
   }, []);
   return (
     <SafeAreaProvider>
-      <Navigation />
+      {/* <Navigation /> */}
+      <AppStack />
     </SafeAreaProvider>
   );
 };

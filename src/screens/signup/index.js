@@ -36,6 +36,11 @@ const SignUp = () => {
       </Text>
       <View style={styles.textboxContainer}>
         <TextInput
+          placeholder="Enter name"
+          style={styles.textbox}
+          placeholderTextColor={'black'}
+        />
+        <TextInput
           placeholder="Enter email"
           style={styles.textbox}
           placeholderTextColor={'black'}
