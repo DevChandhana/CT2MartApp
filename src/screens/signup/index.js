@@ -32,10 +32,11 @@ const SignUp = () => {
       if (password === confirmPassword) {
         auth()
           .createUserWithEmailAndPassword(email, password)
+          .then(() => auth().currentUser.updateProfile({displayName: name}))
           .then(user => {
             dispatch(
               login({
-                email: user.user.email,
+                email: user.email,
                 uid: user.user.uid,
                 displayName: user.user.displayName,
               }),
