@@ -10,6 +10,8 @@ import {styles} from './styles/index';
 // helpers
 import SocialBtns from './helpers/socialbtns';
 const Login = () => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const navigator = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
