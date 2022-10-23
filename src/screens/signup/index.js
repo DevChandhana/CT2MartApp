@@ -19,9 +19,11 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [buttonHandle, setButtonHandle] = useState(false);
   const dispatch = useDispatch();
   // function to handle signup
   const handleSignup = () => {
+    setButtonHandle(true);
     // making sure that all fields are filled
     if (!name || !email || !password || !confirmPassword) {
       alert('please enter all fields');
@@ -33,6 +35,7 @@ const SignUp = () => {
         auth()
           .createUserWithEmailAndPassword(email, password)
           .then(() => auth().currentUser.updateProfile({displayName: name}))
+          .then(() => navigator.navigate('Home'))
           .then(user => {
             dispatch(
               login({
@@ -101,6 +104,7 @@ const SignUp = () => {
           onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
         />
         <Pressable style={styles.signInBtn} onPress={handleSignup}>
+          {/* // disabled={buttonHandle}> */}
           <Text style={styles.signInText}>SignUp</Text>
         </Pressable>
       </View>

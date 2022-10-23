@@ -8,7 +8,8 @@ import Navigation from './navigations';
 import AppStack from './navigations/appstack';
 // redux related stuff
 import { store } from './redux/store';
-import {Provider} from 'react-redux'
+import {Provider} from 'react-redux';
+import {useSelector} from 'react-redux';
 const App = () => {
   useEffect(() => {
     // SplashScreen.show();
