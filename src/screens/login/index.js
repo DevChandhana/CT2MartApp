@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image, TextInput, Text, View, Pressable} from 'react-native';
 import * as Animatable from 'react-native-animatable';
@@ -10,7 +10,11 @@ import {styles} from './styles/index';
 // helpers
 import SocialBtns from './helpers/socialbtns';
 const Login = () => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const navigator = useNavigation();
+
+  const handleSignIn = () => {};
   return (
     <SafeAreaView style={styles.container}>
       <Animatable.Image
@@ -49,7 +53,7 @@ const Login = () => {
             Forgot password?
           </Text>
         </Pressable>
-        <Pressable style={styles.signInBtn}>
+        <Pressable style={styles.signInBtn} onPress={handleSignIn}>
           <Text style={styles.signInText}>SignIn</Text>
         </Pressable>
       </View>
