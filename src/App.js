@@ -30,7 +30,7 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <Provider store={store}>
-        {!userId ? <AppStack /> : <Navigation />}
+        {userId ? <AppStack /> : <Navigation />}
       </Provider>
     </SafeAreaProvider>
   );
