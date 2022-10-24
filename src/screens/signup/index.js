@@ -5,9 +5,10 @@ import {useNavigation} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import auth from '@react-native-firebase/auth';
 import {images} from 'root/constants';
-import {useDispatch} from 'react-redux';
-import {login} from '../../redux/features/authSlice';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {login, authSelector} from '../../redux/features/authSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {firebase} from '@react-native-firebase/auth';
 // styles
 import {styles} from './styles';
 
@@ -19,9 +20,12 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [buttonHandle, setButtonHandle] = useState(false);
+
   const dispatch = useDispatch();
   // function to handle signup
   const handleSignup = () => {
+    setButtonHandle(true);
     // making sure that all fields are filled
     if (!name || !email || !password || !confirmPassword) {
       alert('please enter all fields');
@@ -32,19 +36,33 @@ const SignUp = () => {
       if (password === confirmPassword) {
         auth()
           .createUserWithEmailAndPassword(email, password)
-          .then(() => auth().currentUser.updateProfile({displayName: name}))
           .then(user => {
+            if (user.user) {
+              user.user.updateProfile({
+                displayName: name,
+              });
+            }
+            storeData(user.user.uid);
             dispatch(
               login({
-                email: user.email,
+                email: user.user.email,
                 uid: user.user.uid,
-                displayName: user.user.displayName,
+                displayName: name,
               }),
             );
           })
+          .then(() => navigator.navigate('Home'))
+
           .catch(err => alert(err));
       }
     } else alert('invalid email');
+  };
+  const storeData = async user => {
+    try {
+      await AsyncStorage.setItem('user', user);
+    } catch (e) {
+      alert(e);
+    }
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -101,6 +119,7 @@ const SignUp = () => {
           onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
         />
         <Pressable style={styles.signInBtn} onPress={handleSignup}>
+          {/* // disabled={buttonHandle}> */}
           <Text style={styles.signInText}>SignUp</Text>
         </Pressable>
       </View>

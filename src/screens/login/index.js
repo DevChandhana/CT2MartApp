@@ -3,6 +3,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image, TextInput, Text, View, Pressable} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+import {useDispatch, useSelector} from 'react-redux';
+import {login, authSelector} from '../../redux/features/authSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // images
 import {images} from 'root/constants';
 // styles
@@ -13,8 +17,35 @@ const Login = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const navigator = useNavigation();
+  const dispatch = useDispatch();
 
-  const handleSignIn = () => {};
+  // signin handling function
+  const handleSignIn = () => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(user => {
+          storeData(user.user.uid);
+          dispatch(
+            login({
+              email: user.user.email,
+              uid: user.user.uid,
+              displayName: user.user.displayName,
+            }),
+          );
+        })
+        .then(() => navigator.navigate('Home'))
+        .catch(err => alert(err));
+    } else alert('Please enter a valid email');
+  };
+
+  const storeData = async user => {
+    try {
+      await AsyncStorage.setItem('user', user);
+    } catch (e) {
+      alert(e);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Animatable.Image
@@ -39,6 +70,8 @@ const Login = () => {
         <TextInput
           placeholder="Enter email"
           style={styles.textbox}
+          value={email}
+          onChangeText={email => setEmail(email)}
           placeholderTextColor={'black'}
         />
         <TextInput
@@ -46,6 +79,8 @@ const Login = () => {
           secureTextEntry
           style={styles.textbox}
           placeholderTextColor={'black'}
+          value={password}
+          onChangeText={password => setPassword(password)}
         />
         {/* forgot password button */}
         <Pressable style={{alignItems: 'flex-end'}}>
