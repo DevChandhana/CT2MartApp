@@ -5,8 +5,8 @@ import {useNavigation} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import auth from '@react-native-firebase/auth';
 import {images} from 'root/constants';
-import {useDispatch} from 'react-redux';
-import {login} from '../../redux/features/authSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {login, authSelector} from '../../redux/features/authSlice';
 
 // styles
 import {styles} from './styles';
@@ -20,6 +20,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [buttonHandle, setButtonHandle] = useState(false);
+
   const dispatch = useDispatch();
   // function to handle signup
   const handleSignup = () => {
@@ -34,21 +35,21 @@ const SignUp = () => {
       if (password === confirmPassword) {
         auth()
           .createUserWithEmailAndPassword(email, password)
-          .then(() => auth().currentUser.updateProfile({displayName: name}))
-          .then(() => navigator.navigate('Home'))
           .then(user => {
             dispatch(
               login({
-                email: user.email,
+                email: user.user.email,
                 uid: user.user.uid,
-                displayName: user.user.displayName,
+                displayName: name,
               }),
             );
           })
+          .then(() => navigator.navigate('Home'))
           .catch(err => alert(err));
       }
     } else alert('invalid email');
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <Pressable style={styles.back} onPress={() => navigator.goBack()}>
