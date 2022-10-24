@@ -23,7 +23,6 @@ const App = () => {
     try {
       const uid = await AsyncStorage.getItem('userId');
       setUserId(uid);
-      alert(uid);
     } catch (e) {
       alert(e);
     }
@@ -31,8 +30,7 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <Provider store={store}>
-        <Navigation />
-        {/* <AppStack /> */}
+        {!userId ? <AppStack /> : <Navigation />}
       </Provider>
     </SafeAreaProvider>
   );

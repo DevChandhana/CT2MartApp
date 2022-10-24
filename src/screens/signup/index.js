@@ -8,7 +8,7 @@ import {images} from 'root/constants';
 import {useDispatch, useSelector} from 'react-redux';
 import {login, authSelector} from '../../redux/features/authSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {firebase} from '@react-native-firebase/auth';
 // styles
 import {styles} from './styles';
 
@@ -37,6 +37,11 @@ const SignUp = () => {
         auth()
           .createUserWithEmailAndPassword(email, password)
           .then(user => {
+            if (user.user) {
+              user.user.updateProfile({
+                displayName: name,
+              });
+            }
             storeData(user.user.uid);
             dispatch(
               login({
@@ -52,10 +57,9 @@ const SignUp = () => {
       }
     } else alert('invalid email');
   };
-
   const storeData = async user => {
     try {
-      await AsyncStorage.setItem('userId', user);
+      await AsyncStorage.setItem('user', user);
     } catch (e) {
       alert(e);
     }
