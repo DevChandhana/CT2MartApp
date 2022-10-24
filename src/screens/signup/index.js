@@ -7,6 +7,7 @@ import auth from '@react-native-firebase/auth';
 import {images} from 'root/constants';
 import {useDispatch, useSelector} from 'react-redux';
 import {login, authSelector} from '../../redux/features/authSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // styles
 import {styles} from './styles';
@@ -36,6 +37,7 @@ const SignUp = () => {
         auth()
           .createUserWithEmailAndPassword(email, password)
           .then(user => {
+            storeData(user.user.uid);
             dispatch(
               login({
                 email: user.user.email,
@@ -45,11 +47,19 @@ const SignUp = () => {
             );
           })
           .then(() => navigator.navigate('Home'))
+
           .catch(err => alert(err));
       }
     } else alert('invalid email');
   };
 
+  const storeData = async user => {
+    try {
+      await AsyncStorage.setItem('userId', user);
+    } catch (e) {
+      alert(e);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Pressable style={styles.back} onPress={() => navigator.goBack()}>

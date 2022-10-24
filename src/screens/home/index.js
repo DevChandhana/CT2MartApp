@@ -5,8 +5,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {login, authSelector} from '../../redux/features/authSlice';
 
 const Home = () => {
-  const User = useSelector(authSelector);
-  console.log(User);
+  // const User = useSelector(authSelector);
+  // console.log(User);
   return (
     <SafeAreaView>
       <Text>Home page</Text>
