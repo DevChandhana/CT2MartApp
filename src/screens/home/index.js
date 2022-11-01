@@ -3,6 +3,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text, View, ActivityIndicator, Image, Pressable} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login, authSelector} from '../../redux/features/authSlice';
+import {useNavigation} from '@react-navigation/native';
 import {images} from 'root/constants';
 // components
 import Header from '../../components/header';
@@ -11,6 +12,7 @@ import {styles} from './styles';
 
 const Home = () => {
   const [categories, setCategories] = React.useState([]);
+  const [selectedCat, setSelectedCat] = React.useState('');
   const [catImg, setCatImg] = React.useState([
     images.electronics,
     images.jewelery,
@@ -18,9 +20,9 @@ const Home = () => {
     images.women,
   ]);
 
+  const navigator = useNavigation();
   React.useEffect(() => {
     fetchCategories();
-    console.log(catImg);
   }, []);
 
   const fetchCategories = async () => {
@@ -30,17 +32,14 @@ const Home = () => {
     setCategories(data);
   };
 
-  const handlingCategories = async cat => {
-    const newData = await fetch(
-      `https://fakestoreapi.com/products/category/${cat}`,
-    );
+  const handlingCategories = cat => {
+    navigator.navigate('Products', cat);
   };
   const user = useSelector(authSelector);
-  console.log(user);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      {/* TODO: display all categories */}
       {categories !== '' || null || undefined ? (
         <View>
           {categories.map((item, index) => (
