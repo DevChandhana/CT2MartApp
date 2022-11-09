@@ -26,7 +26,12 @@ const Products = ({route}) => {
       <Header />
       <ScrollView>
         {products.map((item, index) => (
-          <ProductCard key={index} img={[item.image]} title={item.title} />
+          <ProductCard
+            key={index}
+            img={[item.image]}
+            title={item.title}
+            price={item.price}
+          />
         ))}
       </ScrollView>
     </SafeAreaView>
