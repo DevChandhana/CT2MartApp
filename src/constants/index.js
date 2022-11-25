@@ -19,5 +19,7 @@ const images = {
   jewelery: require('../assets/jewelery.png'),
   men: require('../assets/men.png'),
   women: require('../assets/women.png'),
+  unstar: require('../assets/unstar.png'),
+  star: require('../assets/star.png'),
 };
 export {colors, images};
