@@ -8,12 +8,10 @@ import {styles} from './styles';
 
 const ProductCard = props => {
   const {img, title, price, id} = props;
-  console.log(id);
   let arr = new Array(5);
   const navigator = useNavigation();
   const handlingNav = id => {
-    alert(id);
-    navigator.navigate('ProductDesc');
+    navigator.navigate('ProductDesc', id);
   };
   return (
     <Pressable style={styles.card} onPress={() => handlingNav(id)}>

@@ -14,6 +14,7 @@ const images = {
   account: require('../assets/account.png'),
   cart: require('../assets/cart.png'),
   menu: require('../assets/menu.png'),
+  back: require('../assets/back.png'),
   // categories
   electronics: require('../assets/electronics.png'),
   jewelery: require('../assets/jewelery.png'),
