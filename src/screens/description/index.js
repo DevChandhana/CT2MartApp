@@ -20,13 +20,18 @@ const ProductDesc = ({route}) => {
     );
     setData(daa);
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Header />
         {/* TODO: change header per particular screens and maintain cart same
          */}
-        {/* <Image source={images.back} alt="back" /> */}
+        <Image
+          source={{uri: data.image}}
+          alt="back"
+          style={{height: 300, width: 300}}
+        />
         <Text>{data.description}</Text>
       </ScrollView>
     </SafeAreaView>
