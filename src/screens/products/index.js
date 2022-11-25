@@ -28,6 +28,7 @@ const Products = ({route}) => {
         {products.map((item, index) => (
           <ProductCard
             key={index}
+            id={item.id}
             img={[item.image]}
             title={item.title}
             price={item.price}
